@@ -281,6 +281,7 @@ interface LogisticsInfo {
   shipsTo: string[]
   itemId: string
   deliveryChannels: Array<{ id: string }>
+  stockBalance: number
 }
 
 interface SimulationOrderForm extends OrderForm {

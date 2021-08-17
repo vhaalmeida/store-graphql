@@ -47,6 +47,7 @@ export const orderFormItemToSeller = (
   orderFormItem: OrderFormItem & {
     paymentData: any
     ratesAndBenefitsData: RatesAndBenefitsData
+    stockBalance?: number
   }
 ) => {
   const commertialOffer = {
@@ -54,7 +55,7 @@ export const orderFormItemToSeller = (
     PriceValidUntil: orderFormItem.priceValidUntil,
     ListPrice: orderFormItem.listPrice / 100,
     PriceWithoutDiscount: orderFormItem.price / 100,
-    AvailableQuantity: orderFormItem?.availability === 'available' ? 10000 : 0,
+    AvailableQuantity: orderFormItem.stockBalance && orderFormItem.stockBalance > 0 && orderFormItem?.availability === 'available' ? 10000 : 0,
     Teasers: getTeasers(orderFormItem.ratesAndBenefitsData),
     DiscountHighLight: getDiscountHighLights(
       orderFormItem.ratesAndBenefitsData

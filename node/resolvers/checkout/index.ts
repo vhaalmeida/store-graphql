@@ -370,11 +370,13 @@ export const queries: Record<string, Resolver> = {
           const sellers: Array<Partial<Seller>> = simulations.map(
             (simulation) => {
               const [simulationItem] = simulation.items
+              const stockBalance = simulation.logisticsInfo![0].stockBalance
 
               return orderFormItemToSeller({
                 ...simulationItem,
                 paymentData: simulation.paymentData,
-                ratesAndBenefitsData: simulation.ratesAndBenefitsData
+                ratesAndBenefitsData: simulation.ratesAndBenefitsData,
+                stockBalance,
               })
             }
           )
